@@ -27,4 +27,4 @@ More on the Clean Architecture: https://blog.cleancoder.com/uncle-bob/2012/08/13
 * Spring Data JPA (non-reactive connections - but the fastest to setup as of now)
 * H2 (only in-memory DB out-of-the-box)
 * Spring Boot Tests
-* WireMock for integration tests
+* WireMock for integration tests (IT put in regular unit test directory due to lack of time, they should be moved to another directory)
