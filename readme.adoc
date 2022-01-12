@@ -1,0 +1,30 @@
+= README
+:toc:
+
+== Architecture
+The chosen project setup is based on Clean Architecture by Robert Martin.
+
+=== Domain
+The core of the service is in Domain module. Domain should stay as 'POJO' as possible. It means that it's the less dependent module of whole system. In this case it depends only on Reactive Streams API (as the main goal of the service was to be reactive, and Java don't have built-in reactivness yet) + some minor utlitity libraries.
+
+=== Rest
+Module for rest controllers only.
+
+=== Storage
+Storage module for DB repositories and configuration. H2 and blocking DB access was chosen on purpose, as the quickest and simplest solution to ramp up inital development. All DB-related code should run on I/O thread pool. The abstractions required by Clean Archi approach allows to easily change the DB layer in future.
+
+=== WebClient
+Module for reactive rest client provided by Spring Webflux project.
+
+=== SpringBootApplication
+Module that wire-up all of the above submodules - it connects the core of the system - Domain - with external tools such as DB and web layer.
+
+More on the Clean Architecture: https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html[Robert Martin blog post]
+
+== Tools
+* Spring Boot
+* WebFlux
+* Spring Data JPA (non-reactive connections - but the fastest to setup as of now)
+* H2 (only in-memory DB out-of-the-box)
+* Spring Boot Tests
+* WireMock for integration tests
