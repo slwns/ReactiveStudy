@@ -18,19 +18,12 @@ import static org.springframework.web.reactive.function.server.ServerResponse.ok
 @RestController
 @RequestMapping("/repositories")
 public class GetRepositoryDetailsRestController {
-    private static Logger logger = LoggerFactory.getLogger(GetRepositoryDetailsRestController.class);
 
     private final ObtainRepositoryDetailsUseCase obtainRepositoryDetailsUseCase;
 
     public GetRepositoryDetailsRestController(ObtainRepositoryDetailsUseCase obtainRepositoryDetailsUseCase) {
         this.obtainRepositoryDetailsUseCase = obtainRepositoryDetailsUseCase;
     }
-
-//    @GetMapping("/{owner}/{repositoryName}")
-//    public Mono<GetRepositoryDetailsResponse> getRepositoryDetails(@PathVariable String owner, @PathVariable String repositoryName) {
-//        return obtainRepositoryDetailsUseCase.get(owner, repositoryName)
-//                .map(GetRepositoryDetailsResponse::fromDomainModel);
-//    }
 
     @GetMapping("/{owner}/{repositoryName}")
     public Mono<ResponseEntity<GetRepositoryDetailsResponse>> getRepositoryDetails(@PathVariable String owner, @PathVariable String repositoryName) {
